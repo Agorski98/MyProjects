@@ -1,0 +1,40 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "B:\\1_Praca\\SSIS\\SSIS_Zaawansowany\\SSIS-20231107T200417Z-001\\SSIS\\SSIS Advanced\\SSIS_Excercise\\SSIS_InnerJoinSSIS\\InnerJOinInSSIS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B39A2772-180F-4E04-A937-8BB4107096D1}|InnerJOinInSSIS.dtproj|B:\\1_Praca\\SSIS\\SSIS_Zaawansowany\\SSIS-20231107T200417Z-001\\SSIS\\SSIS Advanced\\SSIS_Excercise\\SSIS_InnerJoinSSIS\\InnerJOinInSSIS\\InnerJoinSSIS.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design",
+      "RelativeMoniker": "D:0:0:{B39A2772-180F-4E04-A937-8BB4107096D1}|InnerJOinInSSIS.dtproj|solutionrelative:InnerJoinSSIS.dtsx||{CC84AFBD-DA02-46F4-8623-9F07E5569EDB}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InnerJoinSSIS.dtsx [Design]",
+              "DocumentMoniker": "B:\\1_Praca\\SSIS\\SSIS_Zaawansowany\\SSIS-20231107T200417Z-001\\SSIS\\SSIS Advanced\\SSIS_Excercise\\SSIS_InnerJoinSSIS\\InnerJOinInSSIS\\InnerJoinSSIS.dtsx",
+              "RelativeDocumentMoniker": "InnerJoinSSIS.dtsx",
+              "ToolTip": "B:\\1_Praca\\SSIS\\SSIS_Zaawansowany\\SSIS-20231107T200417Z-001\\SSIS\\SSIS Advanced\\SSIS_Excercise\\SSIS_InnerJoinSSIS\\InnerJOinInSSIS\\InnerJoinSSIS.dtsx [Design]*",
+              "RelativeToolTip": "InnerJoinSSIS.dtsx [Design]*",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFkSURBVDhPjVO/S8NAGH2RtvSPaPeSwUVchS6CexYRJCBYUJC6SEFBBIXiIigKEYRSCC4unQTXDsVipkpbUJHSRTQ2/oimNCTnkOTMXdrqg4Pv\u002B\u002B69ly933wkAoFaqBGPQezdx9/CYO9xZOWU2CPF0aqVKXMcZuY7Kl2R6bomsbZ8sMwYAJvjCKOxtraNW1xTe5N8Gm7sHAIBaXVPC9Vg4KZSaNC7KIs0/jQQW5yUAQPn8gnIwrAM7nYGdzjB5cnIGqwuzDC9AxCDebSPebUdyc8DQWPx1Cx\u002BWQzrG722EtZEOeJgDwOgDukUQSyT5bdagUGrSBU6sW4A7ZNwiHQSHGBa/fANvFuDafZ4eNQgOLSx\u002B/gK06xa6dgpZKY\u002BNswbBlELAz0FRFumXjT7Bq\u002BXFpu31XpRFdJ5M3N73sO9rqMGxehWEI5Ci4puWTqsx\u002BK\u002BNnzAeWSlPxWEDgWGNg//PDLSc8AOMxO8cPcnGpQAAAABJRU5ErkJggg==",
+              "WhenOpened": "2025-01-29T21:47:18.999Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
