@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "B:\\1_Praca\\Git\\MyProjects\\Python_ETL\\IncrementalLoad\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CA15AADC-2DC0-4AA4-8CCE-58496F2527D4}|IncrementalLoad.pyproj|B:\\1_Praca\\Git\\MyProjects\\Python_ETL\\IncrementalLoad\\IncrementalLoad.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{CA15AADC-2DC0-4AA4-8CCE-58496F2527D4}|IncrementalLoad.pyproj|solutionrelative:IncrementalLoad.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IncrementalLoad.py",
+              "DocumentMoniker": "B:\\1_Praca\\Git\\MyProjects\\Python_ETL\\IncrementalLoad\\IncrementalLoad.py",
+              "RelativeDocumentMoniker": "IncrementalLoad.py",
+              "ToolTip": "B:\\1_Praca\\Git\\MyProjects\\Python_ETL\\IncrementalLoad\\IncrementalLoad.py",
+              "RelativeToolTip": "IncrementalLoad.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-01-29T22:08:53.003Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
