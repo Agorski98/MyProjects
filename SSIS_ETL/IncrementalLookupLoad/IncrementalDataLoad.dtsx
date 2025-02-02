@@ -7,12 +7,12 @@
   DTS:CreatorName="AG\Asus"
   DTS:DTSID="{6B426E30-2DB1-4DBB-890E-62170DBCF804}"
   DTS:ExecutableType="Microsoft.Package"
-  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
   DTS:LocaleID="1045"
   DTS:ObjectName="IncrementalDataLoad"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{6482ECBE-E0E6-4DCC-970D-352AF4C98B01}">
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{C55CB6A7-E38F-46BA-87B4-6BE39C72BB1F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -174,13 +174,13 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT Title FROM [hol].[Lab]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT Title FROM [hol].[Lab]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT Title FROM [hol].[Lab]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (SELECT Title FROM [hol].[Lab]) [refTable]
 where [refTable].[Title] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -344,7 +344,7 @@ where [refTable].[Title] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -823,12 +823,13 @@ where [refTable].[Title] = ?</property>
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE z
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE z
 set z.Title = ?,
 z.Description = ?,
 z.Level = ?,
 z.Status = ?
-FROM [hol].[Lab] z</property>
+FROM [hol].[Lab] z
+WHERE Title = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -879,6 +880,13 @@ FROM [hol].[Lab] z</property>
                       cachedName="Status_1252"
                       externalMetadataColumnId="Package\LoadingDataFromLabs\UpdateRecords.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
                       lineageId="Package\LoadingDataFromLabs\StatusChangeCodePage.Outputs[Derived Column Output].Columns[Status_1252]" />
+                    <inputColumn
+                      refId="Package\LoadingDataFromLabs\UpdateRecords.Inputs[OLE DB Command Input].Columns[Title1]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Title"
+                      externalMetadataColumnId="Package\LoadingDataFromLabs\UpdateRecords.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\LoadingDataFromLabs\SourceFile.Outputs[Flat File Source Output].Columns[Title]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -924,6 +932,18 @@ FROM [hol].[Lab] z</property>
                       dataType="str"
                       length="100"
                       name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\LoadingDataFromLabs\UpdateRecords.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="500"
+                      name="Param_4">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -1018,6 +1038,10 @@ FROM [hol].[Lab] z</property>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
+          Size="150,42"
+          Id="Package\LoadingDataFromLabs\UpdateRecords"
+          TopLeft="660,368" />
+        <NodeLayout
           Size="137,42"
           Id="Package\LoadingDataFromLabs\NewRecords"
           TopLeft="392,369" />
@@ -1026,13 +1050,13 @@ FROM [hol].[Lab] z</property>
           Id="Package\LoadingDataFromLabs\SourceFile"
           TopLeft="494,53" />
         <NodeLayout
+          Size="190,42"
+          Id="Package\LoadingDataFromLabs\StatusChangeCodePage"
+          TopLeft="463,139" />
+        <NodeLayout
           Size="113,42"
           Id="Package\LoadingDataFromLabs\Lookup"
           TopLeft="483,249" />
-        <NodeLayout
-          Size="150,42"
-          Id="Package\LoadingDataFromLabs\UpdateRecords"
-          TopLeft="660,368" />
         <EdgeLayout
           Id="Package\LoadingDataFromLabs.Paths[Lookup No Match Output]"
           TopLeft="522,291">
@@ -1105,10 +1129,6 @@ FROM [hol].[Lab] z</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="190,42"
-          Id="Package\LoadingDataFromLabs\StatusChangeCodePage"
-          TopLeft="463,139" />
         <EdgeLayout
           Id="Package\LoadingDataFromLabs.Paths[Flat File Source Output]"
           TopLeft="557.75,95">

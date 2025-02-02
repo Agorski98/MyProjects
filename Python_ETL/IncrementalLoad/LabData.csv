@@ -1,0 +1,5 @@
+Title,Description,CategoryID,Level,Status,PublishedDate
+Joins,we will teach how to use joins in SQL Server,8,Advanced,Development,2014-12-14 04:22:11.400
+Query Tuning Technique Part 1,we will lean how to tune the quries,12,Advanced,Released,2015-11-21 11:16:17.640
+SSIS for Beginners,we will give basic training on SSIS,12,Basic,Released,2015-11-21 11:16:17.640
+SSIS for Experts,we will give advance training on SSIS,12,Advance,Released,2015-11-21 11:16:17.640
