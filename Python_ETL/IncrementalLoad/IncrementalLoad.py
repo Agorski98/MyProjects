@@ -57,8 +57,9 @@ def insert_row(engine,no_match_data,my_tab):
                 Level=row[3],
                 Status=row[4],
                 PublishedDate=row[5])
-        session.execute(insert_data)
+            session.execute(insert_data)
         session.commit()
+      
     except :
         print("Insert niepoprawny")
     finally:
@@ -78,10 +79,11 @@ def update_row(engine,match_data,my_tab):
                 Level=row[3],
                 Status=row[4],
                 PublishedDate=row[5])
-        session.execute(update)
+            session.execute(update)
         session.commit()
+     
     except:
-        print("Update niepoprawny")
+        print("Update incorect")
     finally:
         session.close()
    
@@ -90,14 +92,12 @@ def main():
    flat_filePath, select_data,destination_table_name,table_schema,engine = configurationScript() #configuration 
 
    csv_data = flat_file_source(flat_filePath) #import csv data
-   
-   
-   
+      
    database_data = select_query(select_data,engine) #import database data
    
    match_data, no_match_data = lookup_function(csv_data,database_data) #lookup function to return two dataFrame with match and no match data
    
-   destination_source(engine,insert_row,match_data,table_schema,destination_table_name) #insert new data
+   destination_source(engine,insert_row,no_match_data,table_schema,destination_table_name) #insert new data
    
    destination_source(engine,update_row,match_data,table_schema,destination_table_name) #update old data
 
