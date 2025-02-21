@@ -2,13 +2,13 @@
 <BuildLog xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ProjectInfo>
     <Name>SlowlyChangingDimensions</Name>
-    <LastWriteTime>2025-01-29T22:00:49.6754745Z</LastWriteTime>
+    <LastWriteTime>2025-02-21T21:56:36.1651881Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
-      <Name>SlowlyDimension.dtsx</Name>
-      <LastWriteTime>2025-01-29T22:00:49.6435808Z</LastWriteTime>
+      <Name>TypeOne.dtsx</Name>
+      <LastWriteTime>2025-02-21T21:57:47.2535757Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
