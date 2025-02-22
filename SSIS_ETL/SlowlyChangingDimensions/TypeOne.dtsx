@@ -11,36 +11,10 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="TypeOne"
   DTS:PackageType="5"
-  DTS:VersionBuild="7"
-  DTS:VersionGUID="{AA9E09D4-070A-46DA-9FDF-9BDC0AF4FABE}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{251FBE59-7A13-47B6-BEFD-25959BDD4BCE}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[AG\AG_DWH.AdventureWorks2012]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{C441D325-9679-4A6F-9D58-67CD9192D6A0}"
-      DTS:ObjectName="AG\AG_DWH.AdventureWorks2012">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=AG\AG_DWH;Initial Catalog=AdventureWorks2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-TypeOne-{C441D325-9679-4A6F-9D58-67CD9192D6A0}AG\AG_DWH.AdventureWorks2012;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{11F28691-7DB8-4F20-8482-F308115B6804}"
-      DTS:ObjectName="AG\AG_DWH.AdventureWorksDW2012">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=AG\AG_DWH;Initial Catalog=AdventureWorksDW2012;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-TypeOne-{11F28691-7DB8-4F20-8482-F308115B6804}AG\AG_DWH.AdventureWorksDW2012;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
@@ -116,8 +90,8 @@
               <connections>
                 <connection
                   refId="Package\SCD Type One\Insert Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
-                  connectionManagerRefId="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
+                  connectionManagerID="{11F28691-7DB8-4F20-8482-F308115B6804}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AG_DWH.AdventureWorksDW2012]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -381,8 +355,8 @@
               <connections>
                 <connection
                   refId="Package\SCD Type One\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
-                  connectionManagerRefId="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
+                  connectionManagerID="{11F28691-7DB8-4F20-8482-F308115B6804}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AG_DWH.AdventureWorksDW2012]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -527,8 +501,8 @@ Production.Product</property>
               <connections>
                 <connection
                   refId="Package\SCD Type One\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[AG\AG_DWH.AdventureWorks2012]"
-                  connectionManagerRefId="Package.ConnectionManagers[AG\AG_DWH.AdventureWorks2012]"
+                  connectionManagerID="{C441D325-9679-4A6F-9D58-67CD9192D6A0}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AG_DWH.AdventureWorks2012]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -713,8 +687,8 @@ Production.Product</property>
               <connections>
                 <connection
                   refId="Package\SCD Type One\Slowly Changing Dimension.Connections[LookupConnection]"
-                  connectionManagerID="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
-                  connectionManagerRefId="Package.ConnectionManagers[AG\AG_DWH.AdventureWorksDW2012]"
+                  connectionManagerID="{11F28691-7DB8-4F20-8482-F308115B6804}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[AG_DWH.AdventureWorksDW2012]"
                   description="Defines the connection to use for lookups in the dimension table"
                   name="LookupConnection" />
               </connections>
