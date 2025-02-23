@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="FuzzyGrouping"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{12259425-FBA8-4996-9CD0-0A98141DBD1E}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{AA213535-A8CA-40AD-9E23-71B01216565A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1872,37 +1872,25 @@
         <NodeLayout
           Size="155,42"
           Id="Package\Data Flow Task"
-          TopLeft="550,174" />
+          TopLeft="535,176" />
         <NodeLayout
           Size="153,42"
           Id="Package\Truncate Table"
           TopLeft="541,31" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="617.5,73">
+          TopLeft="615,73">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="10,101"
+              EndConnector="0,103"
               Start="0,0"
-              End="10,93.5">
+              End="0,95.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,46.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,46.5"
-                    Point2="0,50.5"
-                    Point3="4,50.5" />
-                  <mssgle:LineSegment
-                    End="6,50.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="6,50.5"
-                    Point2="10,50.5"
-                    Point3="10,54.5" />
-                  <mssgle:LineSegment
-                    End="10,93.5" />
+                    End="0,95.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
