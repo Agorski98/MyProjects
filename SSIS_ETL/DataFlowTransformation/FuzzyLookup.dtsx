@@ -11,8 +11,8 @@
   DTS:LocaleID="1045"
   DTS:ObjectName="FuzzyLokup"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{6AD49758-D234-4F60-8829-A514D77F571D}">
+  DTS:VersionBuild="18"
+  DTS:VersionGUID="{DED5E0F2-F685-4C32-82B6-5FEDA4AD518D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -315,13 +315,13 @@
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\Data Flow Task"
+      DTS:refId="Package\FuzzyLookup"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
       DTS:DTSID="{9C2B70F0-DA73-4818-A8E5-389E436101A5}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Data Flow Task"
+      DTS:ObjectName="FuzzyLookup"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -329,7 +329,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Data Flow Task\Conditional Split"
+              refId="Package\FuzzyLookup\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
@@ -337,40 +337,40 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  refId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input]"
                   description="Input to the Conditional Split Transformation"
                   name="Conditional Split Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input].Columns[_Similarity]"
                       cachedDataType="r4"
                       cachedName="_Similarity"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]" />
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input].Columns[_Confidence]"
                       cachedDataType="r4"
                       cachedName="_Confidence"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]" />
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]" />
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Solid Matches]"
+                  refId="Package\FuzzyLookup\Conditional Split.Outputs[Solid Matches]"
                   description="Output 1 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Solid Matches"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  synchronousInputId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]} &gt; 0.85 &amp;&amp; #{Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]} &gt; 0.8</property>
+                      name="Expression">#{Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]} &gt; 0.85 &amp;&amp; #{Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]} &gt; 0.8</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -385,20 +385,20 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Likely Matches]"
+                  refId="Package\FuzzyLookup\Conditional Split.Outputs[Likely Matches]"
                   description="Output 2 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
                   errorRowDisposition="FailComponent"
                   exclusionGroup="1"
                   name="Likely Matches"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+                  synchronousInputId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input]"
                   truncationRowDisposition="FailComponent">
                   <properties>
                     <property
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">#{Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]} &gt; 0.65 &amp;&amp; #{Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]} &gt; 0.7</property>
+                      name="Expression">#{Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]} &gt; 0.65 &amp;&amp; #{Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]} &gt; 0.7</property>
                     <property
                       containsID="true"
                       dataType="System.String"
@@ -413,11 +413,11 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[No Match]"
+                  refId="Package\FuzzyLookup\Conditional Split.Outputs[No Match]"
                   description="Default Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   name="No Match"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input]">
                   <properties>
                     <property
                       dataType="System.Boolean"
@@ -426,23 +426,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output]"
+                  refId="Package\FuzzyLookup\Conditional Split.Outputs[Conditional Split Error Output]"
                   description="Error Output of the Conditional Split Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Conditional Split Error Output"
-                  synchronousInputId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]">
+                  synchronousInputId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      refId="Package\FuzzyLookup\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      lineageId="Package\FuzzyLookup\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      refId="Package\FuzzyLookup\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\FuzzyLookup\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -451,7 +451,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Flat File Destination"
+              refId="Package\FuzzyLookup\Flat File Destination"
               componentClassID="Microsoft.FlatFileDestination"
               contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Destination"
@@ -475,243 +475,243 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Flat File Destination.Connections[FlatFileConnection]"
+                  refId="Package\FuzzyLookup\Flat File Destination.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[FF_Destination]"
                   connectionManagerRefId="Package.ConnectionManagers[FF_Destination]"
                   name="FlatFileConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+                  refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input]"
                   hasSideEffects="true"
                   name="Flat File Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[BusinessEntityID]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="BusinessEntityID"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BusinessEntityID]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BusinessEntityID]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[FirstName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="FirstName"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[FirstName]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[LastName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="LastName"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LastName]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[LastName]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[LastName]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[EmailAddress]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="EmailAddress"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EmailAddress]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EmailAddress]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[PhoneNumber]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="PhoneNumber"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[PhoneNumber]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[PhoneNumber]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[AddressLine1]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine1"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine1]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine1]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[AddressLine2]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine2"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine2]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine2]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[City]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[City]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="City"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[City]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[City]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[City]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[City]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[State]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[State]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="State"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[State]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[State]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[State]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[State]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Country]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[Country]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Country"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Country]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Country]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Country]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Country]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[Fuzzy_FirstName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_FirstName"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_FirstName]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_FirstName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[Fuzzy_LastName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_LastName"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_LastName]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_LastName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Similarity]"
                       cachedDataType="r4"
                       cachedName="_Similarity"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Confidence]"
                       cachedDataType="r4"
                       cachedName="_Confidence"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Confidence]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Confidence]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Similarity_FirstName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_FirstName"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_FirstName]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_FirstName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[_Similarity_LastName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_LastName"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_LastName]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_LastName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]" />
                     <inputColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].Columns[Match]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].Columns[Match]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="Match"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Match]"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Match]" />
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Match]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Match]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BusinessEntityID]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="BusinessEntityID" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[FirstName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LastName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[LastName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[EmailAddress]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[PhoneNumber]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="PhoneNumber" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine1]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="AddressLine1" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[AddressLine2]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="AddressLine2" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[City]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[City]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="City" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[State]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[State]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="State" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Country]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Country]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="Country" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_FirstName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="Fuzzy_FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Fuzzy_LastName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="Fuzzy_LastName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="_Similarity" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Confidence]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Confidence]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="_Confidence" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_FirstName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="_Similarity_FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[_Similarity_LastName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="_Similarity_LastName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Match]"
+                      refId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Match]"
                       codePage="1250"
                       dataType="str"
                       length="50"
@@ -721,7 +721,7 @@
               </inputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Flat File Source"
+              refId="Package\FuzzyLookup\Flat File Source"
               componentClassID="Microsoft.FlatFileSource"
               contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Flat File Source"
@@ -741,25 +741,25 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Flat File Source.Connections[FlatFileConnection]"
+                  refId="Package\FuzzyLookup\Flat File Source.Connections[FlatFileConnection]"
                   connectionManagerID="Package.ConnectionManagers[FF_Source]"
                   connectionManagerRefId="Package.ConnectionManagers[FF_Source]"
                   name="FlatFileConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output]"
+                  refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output]"
                   name="Flat File Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BusinessEntityID]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BusinessEntityID]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]"
                       name="BusinessEntityID"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -774,14 +774,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]"
                       name="FirstName"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -796,14 +796,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LastName]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LastName]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]"
                       name="LastName"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -818,14 +818,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[EmailAddress]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[EmailAddress]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]"
                       name="EmailAddress"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -840,14 +840,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PhoneNumber]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PhoneNumber]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]"
                       name="PhoneNumber"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -862,14 +862,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine1]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine1]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]"
                       name="AddressLine1"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -884,14 +884,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine2]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine2]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]"
                       name="AddressLine2"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -906,14 +906,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[City]"
                       name="City"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -928,14 +928,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[State]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[State]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[State]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[State]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[State]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[State]"
                       name="State"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -950,14 +950,14 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
                       codePage="1250"
                       dataType="str"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      externalMetadataColumnId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
                       length="50"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[Country]"
                       name="Country"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -975,61 +975,61 @@
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[BusinessEntityID]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="BusinessEntityID" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[FirstName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="FirstName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LastName]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[LastName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="LastName" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[EmailAddress]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="EmailAddress" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[PhoneNumber]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="PhoneNumber" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine1]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="AddressLine1" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine2]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="AddressLine2" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="City" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[State]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[State]"
                       codePage="1250"
                       dataType="str"
                       length="50"
                       name="State" />
                     <externalMetadataColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].ExternalColumns[Country]"
                       codePage="1250"
                       dataType="str"
                       length="50"
@@ -1037,27 +1037,27 @@
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output]"
+                  refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output]"
                   isErrorOut="true"
                   name="Flat File Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       codePage="1250"
                       dataType="text"
                       description="Flat File Source Error Output Column"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
                       name="Flat File Source Error Output Column" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1066,7 +1066,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Fuzzy Lookup"
+              refId="Package\FuzzyLookup\Fuzzy Lookup"
               componentClassID="Microsoft.FuzzyLookup"
               contactInfo="Fuzzy Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;5"
               description="Performs data cleaning tasks such as standardizing data, correcting data, and providing missing values.  Uses fuzzy matching to return one or more close matches from a reference table. For example, lookup customer data by address, even if your input address data does not exactly match your reference address data."
@@ -1130,7 +1130,7 @@
               </properties>
               <connections>
                 <connection
-                  refId="Package\Data Flow Task\Fuzzy Lookup.Connections[OleDbConnection]"
+                  refId="Package\FuzzyLookup\Fuzzy Lookup.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[Lab_Database]"
                   connectionManagerRefId="Package.ConnectionManagers[Lab_Database]"
                   description="Microsoft SQL Server connection and database in which the fuzzy lookup reference table is located and where the fuzzy match index table will be stored and accessed."
@@ -1138,16 +1138,16 @@
               </connections>
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input]"
+                  refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input]"
                   name="Fuzzy Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[BusinessEntityID]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="BusinessEntityID"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1176,12 +1176,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[FirstName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="FirstName"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1210,12 +1210,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[LastName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="LastName"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]">
                       <properties>
                         <property
                           dataType="System.String"
@@ -1244,12 +1244,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[EmailAddress]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="EmailAddress"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1278,12 +1278,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[PhoneNumber]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="PhoneNumber"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1312,12 +1312,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[AddressLine1]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine1"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1346,12 +1346,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[AddressLine2]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine2"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1380,12 +1380,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[City]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[City]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="City"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[City]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[City]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1414,12 +1414,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[State]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[State]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="State"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[State]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[State]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1448,12 +1448,12 @@
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[Country]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input].Columns[Country]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Country"
-                      lineageId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Country]">
+                      lineageId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[Country]">
                       <properties>
                         <property
                           dataType="System.Null"
@@ -1487,15 +1487,15 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output]"
+                  refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output]"
                   name="Fuzzy Lookup Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]"
                       name="BusinessEntityID">
                       <properties>
                         <property
@@ -1507,7 +1507,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[BusinessEntityID]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1516,11 +1516,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]"
                       name="FirstName">
                       <properties>
                         <property
@@ -1532,7 +1532,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1541,11 +1541,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]"
                       name="LastName">
                       <properties>
                         <property
@@ -1557,7 +1557,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1566,11 +1566,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]"
                       name="EmailAddress">
                       <properties>
                         <property
@@ -1582,7 +1582,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[EmailAddress]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1591,11 +1591,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]"
                       name="PhoneNumber">
                       <properties>
                         <property
@@ -1607,7 +1607,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[PhoneNumber]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1616,11 +1616,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]"
                       name="AddressLine1">
                       <properties>
                         <property
@@ -1632,7 +1632,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine1]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1641,11 +1641,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]"
                       name="AddressLine2">
                       <properties>
                         <property
@@ -1657,7 +1657,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[AddressLine2]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1666,11 +1666,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]"
                       name="City">
                       <properties>
                         <property
@@ -1682,7 +1682,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[City]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[City]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1691,11 +1691,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]"
                       name="State">
                       <properties>
                         <property
@@ -1707,7 +1707,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[State]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[State]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1716,11 +1716,11 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]"
                       name="Country">
                       <properties>
                         <property
@@ -1732,7 +1732,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[Country]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[Country]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1741,10 +1741,10 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]"
                       name="Fuzzy_FirstName">
                       <properties>
                         <property
@@ -1765,10 +1765,10 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]"
                       name="Fuzzy_LastName">
                       <properties>
                         <property
@@ -1789,9 +1789,9 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]"
                       dataType="r4"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]"
                       name="_Similarity">
                       <properties>
                         <property
@@ -1802,9 +1802,9 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]"
                       dataType="r4"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]"
                       name="_Confidence">
                       <properties>
                         <property
@@ -1815,10 +1815,10 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]"
                       dataType="r4"
                       description="Column-level similarity score for fuzzy join on column &quot;FirstName&quot;."
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]"
                       name="_Similarity_FirstName">
                       <properties>
                         <property
@@ -1830,7 +1830,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[FirstName]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1839,10 +1839,10 @@
                       </properties>
                     </outputColumn>
                     <outputColumn
-                      refId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]"
                       dataType="r4"
                       description="Column-level similarity score for fuzzy join on column &quot;LastName&quot;."
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]"
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]"
                       name="_Similarity_LastName">
                       <properties>
                         <property
@@ -1854,7 +1854,7 @@
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column from which to copy to this output column for each match."
-                          name="SourceInputColumnLineageID">#{Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]}</property>
+                          name="SourceInputColumnLineageID">#{Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output].Columns[LastName]}</property>
                         <property
                           dataType="System.Int32"
                           description="Specifies whether the column is used to indicate confidence or similarity."
@@ -1868,7 +1868,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Likely"
+              refId="Package\FuzzyLookup\Likely"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -1876,7 +1876,7 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Likely.Inputs[Derived Column Input]"
+                  refId="Package\FuzzyLookup\Likely.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -1884,19 +1884,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Likely.Outputs[Derived Column Output]"
+                  refId="Package\FuzzyLookup\Likely.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Data Flow Task\Likely.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\FuzzyLookup\Likely.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Likely.Outputs[Derived Column Output].Columns[Match]"
+                      refId="Package\FuzzyLookup\Likely.Outputs[Derived Column Output].Columns[Match]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="6"
-                      lineageId="Package\Data Flow Task\Likely.Outputs[Derived Column Output].Columns[Match]"
+                      lineageId="Package\FuzzyLookup\Likely.Outputs[Derived Column Output].Columns[Match]"
                       name="Match"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1917,23 +1917,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Likely.Outputs[Derived Column Error Output]"
+                  refId="Package\FuzzyLookup\Likely.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Data Flow Task\Likely.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\FuzzyLookup\Likely.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Likely.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\FuzzyLookup\Likely.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Likely.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\FuzzyLookup\Likely.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Likely.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\FuzzyLookup\Likely.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Likely.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\FuzzyLookup\Likely.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1942,7 +1942,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\No Match"
+              refId="Package\FuzzyLookup\No Match"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -1950,7 +1950,7 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\No Match.Inputs[Derived Column Input]"
+                  refId="Package\FuzzyLookup\No Match.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -1958,19 +1958,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\No Match.Outputs[Derived Column Output]"
+                  refId="Package\FuzzyLookup\No Match.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Data Flow Task\No Match.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\FuzzyLookup\No Match.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\No Match.Outputs[Derived Column Output].Columns[Match]"
+                      refId="Package\FuzzyLookup\No Match.Outputs[Derived Column Output].Columns[Match]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="6"
-                      lineageId="Package\Data Flow Task\No Match.Outputs[Derived Column Output].Columns[Match]"
+                      lineageId="Package\FuzzyLookup\No Match.Outputs[Derived Column Output].Columns[Match]"
                       name="Match"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -1991,23 +1991,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\No Match.Outputs[Derived Column Error Output]"
+                  refId="Package\FuzzyLookup\No Match.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Data Flow Task\No Match.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\FuzzyLookup\No Match.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\No Match.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\FuzzyLookup\No Match.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\No Match.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\FuzzyLookup\No Match.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\No Match.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\FuzzyLookup\No Match.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\No Match.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\FuzzyLookup\No Match.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2016,7 +2016,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Solid"
+              refId="Package\FuzzyLookup\Solid"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
@@ -2024,7 +2024,7 @@
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Solid.Inputs[Derived Column Input]"
+                  refId="Package\FuzzyLookup\Solid.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -2032,19 +2032,19 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Solid.Outputs[Derived Column Output]"
+                  refId="Package\FuzzyLookup\Solid.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Data Flow Task\Solid.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\FuzzyLookup\Solid.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Solid.Outputs[Derived Column Output].Columns[Match]"
+                      refId="Package\FuzzyLookup\Solid.Outputs[Derived Column Output].Columns[Match]"
                       dataType="wstr"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       length="5"
-                      lineageId="Package\Data Flow Task\Solid.Outputs[Derived Column Output].Columns[Match]"
+                      lineageId="Package\FuzzyLookup\Solid.Outputs[Derived Column Output].Columns[Match]"
                       name="Match"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -2065,23 +2065,23 @@
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Data Flow Task\Solid.Outputs[Derived Column Error Output]"
+                  refId="Package\FuzzyLookup\Solid.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Data Flow Task\Solid.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\FuzzyLookup\Solid.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Solid.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\FuzzyLookup\Solid.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Solid.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\FuzzyLookup\Solid.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Solid.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\FuzzyLookup\Solid.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Data Flow Task\Solid.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\FuzzyLookup\Solid.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2090,7 +2090,7 @@
               </outputs>
             </component>
             <component
-              refId="Package\Data Flow Task\Union All Matches"
+              refId="Package\FuzzyLookup\Union All Matches"
               componentClassID="Microsoft.UnionAll"
               contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
               description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
@@ -2098,762 +2098,762 @@
               version="1">
               <inputs>
                 <input
-                  refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1]"
+                  refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1]"
                   name="Union All Input 1">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[BusinessEntityID]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="BusinessEntityID"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[FirstName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[LastName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[EmailAddress]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="EmailAddress"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[PhoneNumber]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="PhoneNumber"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[AddressLine1]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine1"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[AddressLine2]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine2"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[City]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[City]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="City"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[City]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[City]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[State]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[State]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="State"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[State]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[State]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[Country]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[Country]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Country"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Country]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Country]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[Fuzzy_FirstName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[Fuzzy_LastName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[_Similarity]"
                       cachedDataType="r4"
                       cachedName="_Similarity"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[_Confidence]"
                       cachedDataType="r4"
                       cachedName="_Confidence"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[_Similarity_FirstName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[_Similarity_LastName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1].Columns[Match]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1].Columns[Match]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="Match"
-                      lineageId="Package\Data Flow Task\Likely.Outputs[Derived Column Output].Columns[Match]">
+                      lineageId="Package\FuzzyLookup\Likely.Outputs[Derived Column Output].Columns[Match]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Match]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Match]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2]"
+                  refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2]"
                   hasSideEffects="true"
                   name="Union All Input 2">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[BusinessEntityID]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="BusinessEntityID"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[FirstName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[LastName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[EmailAddress]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="EmailAddress"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[PhoneNumber]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="PhoneNumber"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[AddressLine1]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine1"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[AddressLine2]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine2"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[City]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[City]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="City"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[City]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[City]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[State]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[State]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="State"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[State]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[State]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[Country]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[Country]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Country"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Country]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Country]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[Fuzzy_FirstName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[Fuzzy_LastName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[_Similarity]"
                       cachedDataType="r4"
                       cachedName="_Similarity"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[_Confidence]"
                       cachedDataType="r4"
                       cachedName="_Confidence"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[_Similarity_FirstName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[_Similarity_LastName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2].Columns[Match]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2].Columns[Match]"
                       cachedDataType="wstr"
                       cachedLength="5"
                       cachedName="Match"
-                      lineageId="Package\Data Flow Task\Solid.Outputs[Derived Column Output].Columns[Match]">
+                      lineageId="Package\FuzzyLookup\Solid.Outputs[Derived Column Output].Columns[Match]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Match]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Match]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3]"
+                  refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3]"
                   hasSideEffects="true"
                   name="Union All Input 3">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[BusinessEntityID]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="BusinessEntityID"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[BusinessEntityID]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[FirstName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[LastName]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[EmailAddress]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="EmailAddress"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[EmailAddress]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[PhoneNumber]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="PhoneNumber"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[PhoneNumber]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[AddressLine1]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine1"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine1]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[AddressLine2]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="AddressLine2"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[AddressLine2]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[City]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[City]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="City"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[City]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[City]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[City]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[State]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[State]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="State"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[State]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[State]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[State]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[Country]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[Country]"
                       cachedCodepage="1250"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="Country"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Country]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Country]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Country]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[Fuzzy_FirstName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[Fuzzy_LastName]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="Fuzzy_LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[Fuzzy_LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[_Similarity]"
                       cachedDataType="r4"
                       cachedName="_Similarity"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[_Confidence]"
                       cachedDataType="r4"
                       cachedName="_Confidence"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Confidence]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[_Similarity_FirstName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_FirstName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_FirstName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[_Similarity_LastName]"
                       cachedDataType="r4"
                       cachedName="_Similarity_LastName"
-                      lineageId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]">
+                      lineageId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output].Columns[_Similarity_LastName]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]}</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3].Columns[Match]"
+                      refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3].Columns[Match]"
                       cachedDataType="wstr"
                       cachedLength="6"
                       cachedName="Match"
-                      lineageId="Package\Data Flow Task\No Match.Outputs[Derived Column Output].Columns[Match]">
+                      lineageId="Package\FuzzyLookup\No Match.Outputs[Derived Column Output].Columns[Match]">
                       <properties>
                         <property
                           containsID="true"
                           dataType="System.Int32"
                           description="Output column lineage ID"
-                          name="OutputColumnLineageID">#{Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Match]}</property>
+                          name="OutputColumnLineageID">#{Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Match]}</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
                   <externalMetadataColumns />
                 </input>
                 <input
-                  refId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 4]"
+                  refId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 4]"
                   dangling="true"
                   hasSideEffects="true"
                   name="Union All Input 4">
@@ -2862,118 +2862,118 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1]"
+                  refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1]"
                   name="Union All Output 1">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[BusinessEntityID]"
                       name="BusinessEntityID" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[FirstName]"
                       name="FirstName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[LastName]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[LastName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[LastName]"
                       name="LastName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[EmailAddress]"
                       name="EmailAddress" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[PhoneNumber]"
                       name="PhoneNumber" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine1]"
                       name="AddressLine1" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[AddressLine2]"
                       name="AddressLine2" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[City]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[City]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[City]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[City]"
                       name="City" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[State]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[State]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[State]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[State]"
                       name="State" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Country]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Country]"
                       codePage="1250"
                       dataType="str"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Country]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Country]"
                       name="Country" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_FirstName]"
                       name="Fuzzy_FirstName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Fuzzy_LastName]"
                       name="Fuzzy_LastName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]"
                       dataType="r4"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity]"
                       name="_Similarity" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]"
                       dataType="r4"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Confidence]"
                       name="_Confidence" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]"
                       dataType="r4"
                       description="Column-level similarity score for fuzzy join on column &quot;FirstName&quot;."
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_FirstName]"
                       name="_Similarity_FirstName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]"
                       dataType="r4"
                       description="Column-level similarity score for fuzzy join on column &quot;LastName&quot;."
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[_Similarity_LastName]"
                       name="_Similarity_LastName" />
                     <outputColumn
-                      refId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Match]"
+                      refId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Match]"
                       dataType="wstr"
                       length="6"
-                      lineageId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1].Columns[Match]"
+                      lineageId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1].Columns[Match]"
                       name="Match" />
                   </outputColumns>
                   <externalMetadataColumns />
@@ -2983,50 +2983,50 @@
           </components>
           <paths>
             <path
-              refId="Package\Data Flow Task.Paths[Derived Column Output]"
-              endId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 1]"
+              refId="Package\FuzzyLookup.Paths[Derived Column Output]"
+              endId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 1]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\Likely.Outputs[Derived Column Output]" />
+              startId="Package\FuzzyLookup\Likely.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Derived Column Output1]"
-              endId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 2]"
+              refId="Package\FuzzyLookup.Paths[Derived Column Output1]"
+              endId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 2]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\Solid.Outputs[Derived Column Output]" />
+              startId="Package\FuzzyLookup\Solid.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Derived Column Output2]"
-              endId="Package\Data Flow Task\Union All Matches.Inputs[Union All Input 3]"
+              refId="Package\FuzzyLookup.Paths[Derived Column Output2]"
+              endId="Package\FuzzyLookup\Union All Matches.Inputs[Union All Input 3]"
               name="Derived Column Output"
-              startId="Package\Data Flow Task\No Match.Outputs[Derived Column Output]" />
+              startId="Package\FuzzyLookup\No Match.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Flat File Source Output]"
-              endId="Package\Data Flow Task\Fuzzy Lookup.Inputs[Fuzzy Lookup Input]"
+              refId="Package\FuzzyLookup.Paths[Flat File Source Output]"
+              endId="Package\FuzzyLookup\Fuzzy Lookup.Inputs[Fuzzy Lookup Input]"
               name="Flat File Source Output"
-              startId="Package\Data Flow Task\Flat File Source.Outputs[Flat File Source Output]" />
+              startId="Package\FuzzyLookup\Flat File Source.Outputs[Flat File Source Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Fuzzy Lookup Output]"
-              endId="Package\Data Flow Task\Conditional Split.Inputs[Conditional Split Input]"
+              refId="Package\FuzzyLookup.Paths[Fuzzy Lookup Output]"
+              endId="Package\FuzzyLookup\Conditional Split.Inputs[Conditional Split Input]"
               name="Fuzzy Lookup Output"
-              startId="Package\Data Flow Task\Fuzzy Lookup.Outputs[Fuzzy Lookup Output]" />
+              startId="Package\FuzzyLookup\Fuzzy Lookup.Outputs[Fuzzy Lookup Output]" />
             <path
-              refId="Package\Data Flow Task.Paths[Likely Matches]"
-              endId="Package\Data Flow Task\Likely.Inputs[Derived Column Input]"
+              refId="Package\FuzzyLookup.Paths[Likely Matches]"
+              endId="Package\FuzzyLookup\Likely.Inputs[Derived Column Input]"
               name="Likely Matches"
-              startId="Package\Data Flow Task\Conditional Split.Outputs[Likely Matches]" />
+              startId="Package\FuzzyLookup\Conditional Split.Outputs[Likely Matches]" />
             <path
-              refId="Package\Data Flow Task.Paths[No Match]"
-              endId="Package\Data Flow Task\No Match.Inputs[Derived Column Input]"
+              refId="Package\FuzzyLookup.Paths[No Match]"
+              endId="Package\FuzzyLookup\No Match.Inputs[Derived Column Input]"
               name="No Match"
-              startId="Package\Data Flow Task\Conditional Split.Outputs[No Match]" />
+              startId="Package\FuzzyLookup\Conditional Split.Outputs[No Match]" />
             <path
-              refId="Package\Data Flow Task.Paths[Solid Matches]"
-              endId="Package\Data Flow Task\Solid.Inputs[Derived Column Input]"
+              refId="Package\FuzzyLookup.Paths[Solid Matches]"
+              endId="Package\FuzzyLookup\Solid.Inputs[Derived Column Input]"
               name="Solid Matches"
-              startId="Package\Data Flow Task\Conditional Split.Outputs[Solid Matches]" />
+              startId="Package\FuzzyLookup\Conditional Split.Outputs[Solid Matches]" />
             <path
-              refId="Package\Data Flow Task.Paths[Union All Output 1]"
-              endId="Package\Data Flow Task\Flat File Destination.Inputs[Flat File Destination Input]"
+              refId="Package\FuzzyLookup.Paths[Union All Output 1]"
+              endId="Package\FuzzyLookup\Flat File Destination.Inputs[Flat File Destination Input]"
               name="Union All Output 1"
-              startId="Package\Data Flow Task\Union All Matches.Outputs[Union All Output 1]" />
+              startId="Package\FuzzyLookup\Union All Matches.Outputs[Union All Output 1]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -3046,50 +3046,50 @@
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
           Size="155,42"
-          Id="Package\Data Flow Task"
+          Id="Package\FuzzyLookup"
           TopLeft="484,70" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
   <TaskHost
-    design-time-name="Package\Data Flow Task">
+    design-time-name="Package\FuzzyLookup">
     <LayoutInfo>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="168,42"
-          Id="Package\Data Flow Task\Union All Matches"
+          Id="Package\FuzzyLookup\Union All Matches"
           TopLeft="506,479" />
         <NodeLayout
           Size="126,42"
-          Id="Package\Data Flow Task\No Match"
+          Id="Package\FuzzyLookup\No Match"
           TopLeft="731,348" />
         <NodeLayout
           Size="147,42"
-          Id="Package\Data Flow Task\Fuzzy Lookup"
+          Id="Package\FuzzyLookup\Fuzzy Lookup"
           TopLeft="510,142" />
         <NodeLayout
           Size="156,42"
-          Id="Package\Data Flow Task\Flat File Source"
+          Id="Package\FuzzyLookup\Flat File Source"
           TopLeft="504,32" />
         <NodeLayout
           Size="104,42"
-          Id="Package\Data Flow Task\Solid"
+          Id="Package\FuzzyLookup\Solid"
           TopLeft="530,348" />
         <NodeLayout
           Size="107,42"
-          Id="Package\Data Flow Task\Likely"
+          Id="Package\FuzzyLookup\Likely"
           TopLeft="333,342" />
         <NodeLayout
           Size="159,42"
-          Id="Package\Data Flow Task\Conditional Split"
+          Id="Package\FuzzyLookup\Conditional Split"
           TopLeft="497,256" />
         <NodeLayout
           Size="176,42"
-          Id="Package\Data Flow Task\Flat File Destination"
+          Id="Package\FuzzyLookup\Flat File Destination"
           TopLeft="497,559" />
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Flat File Source Output]"
+          Id="Package\FuzzyLookup.Paths[Flat File Source Output]"
           TopLeft="582.75,74">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3111,7 +3111,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output2]"
+          Id="Package\FuzzyLookup.Paths[Derived Column Output2]"
           TopLeft="794,390">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3145,7 +3145,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output1]"
+          Id="Package\FuzzyLookup.Paths[Derived Column Output1]"
           TopLeft="582,390">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3179,7 +3179,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          Id="Package\FuzzyLookup.Paths[Derived Column Output]"
           TopLeft="386.5,384">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3213,7 +3213,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Union All Output 1]"
+          Id="Package\FuzzyLookup.Paths[Union All Output 1]"
           TopLeft="587.5,521">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3235,7 +3235,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Solid Matches]"
+          Id="Package\FuzzyLookup.Paths[Solid Matches]"
           TopLeft="579.25,298">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3259,7 +3259,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[No Match]"
+          Id="Package\FuzzyLookup.Paths[No Match]"
           TopLeft="614.25,298">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3295,7 +3295,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Likely Matches]"
+          Id="Package\FuzzyLookup.Paths[Likely Matches]"
           TopLeft="538.75,298">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3331,7 +3331,7 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Data Flow Task.Paths[Fuzzy Lookup Output]"
+          Id="Package\FuzzyLookup.Paths[Fuzzy Lookup Output]"
           TopLeft="580,184">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -3356,7 +3356,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Fuzzy Lookup">
+    design-time-name="Package\FuzzyLookup\Fuzzy Lookup">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
