@@ -70,7 +70,7 @@ ELSE
 		PRINT('Incorrect password')
 	END
 
-
+--	SELECT * FROM dbo.Login
 ----------------- Encrypting data in SQL Server
 --Hierarchy of database encryption 
 -- Database Master key
@@ -189,4 +189,4 @@ WITH PASSWORD = '132fdsd2d34'
 
 
 
------------------------- column encryption
+------------------------ encrypting column data
