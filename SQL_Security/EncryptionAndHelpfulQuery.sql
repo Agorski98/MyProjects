@@ -190,3 +190,63 @@ WITH PASSWORD = '132fdsd2d34'
 
 
 ------------------------ encrypting column data
+
+
+
+USE Lab
+
+DROP TABLE IF EXISTS dbo.Customer
+CREATE TABLE dbo.Customer (
+ContactId INT Primary KEY IDENTITY(1,1),
+CreditCard Varbinary(128) NOT NULL
+);
+
+
+CREATE ASYMMETRIC KEY CreditCardAEK
+WITH ALGORITHM = RSA_4096;
+
+
+CREATE SYMMETRIC KEY CreditCardSK
+WITH ALGORITHM = AES_256
+ENCRYPTION BY ASYMMETRIC KEY  CreditCardAEK
+
+
+OPEN SYMMETRIC KEY CreditCardSK
+DECRYPTION BY ASYMMETRIC KEY  CreditCardAEK
+
+INSERT INTO dbo.Customer (CreditCard)  VALUES(ENCRYPTBYKEY(KEY_GUID('CreditCardSK'),
+											  N'1234-123421',1,'SALT_Example'))
+
+
+CLOSE SYMMETRIC KEY CreditCardSK
+
+OPEN SYMMETRIC KEY CreditCardSK
+DECRYPTION BY ASYMMETRIC KEY  CreditCardAEK
+
+
+SELECT ContactID, 
+	 CAST(DECRYPTBYKEY (
+	 CreditCard,1,'SALT_Example')  AS nvarchar(50)) Decrypt,
+	 CAST(
+	 CreditCard  AS nvarchar(50)) Encrypt
+FROM dbo.Customer
+
+CLOSE SYMMETRIC KEY CreditCardSK
+
+SELECT ContactID, 
+	 CAST(DECRYPTBYKEY (
+	 CreditCard,1,'SALT_Example')  AS nvarchar(50)) Null_Value,
+	 CAST(
+	 CreditCard  AS nvarchar(50)) Encrypt
+FROM dbo.Customer
+
+
+--ENCRYPT DATA AT REST
+
+
+
+
+
+
+
+
