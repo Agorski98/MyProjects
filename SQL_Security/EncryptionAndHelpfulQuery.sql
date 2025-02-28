@@ -20,7 +20,7 @@ DECLARE @Password NVARCHAR(50) = N'SecurePass$123'
 
 DECLARE @HashedPassword VARBINARY (256)
 
-SET @HashedPassword = HASHBYTES('SHA2_512', @Password) --Hasbytes is determistic function two equal string must return the same result
+SET @HashedPassword = HASHBYTES(N'SHA2_512', @Password) --Hasbytes is determistic function two equal string must return the same result
 -- Hashes is one-way irreversible algorithms 
 -- HASHBYTES is only one hash function in tsql but we not can add salt 
 
@@ -28,7 +28,7 @@ SET @HashedPassword = HASHBYTES('SHA2_512', @Password) --Hasbytes is determistic
 --SELECT DATALENGTH (@HashedPassword)
 
 INSERT INTO dbo.Login (UserName,Password)
-VALUES (N'DrWho',HASHBYTES('SHA2_512',N'Cyberm3n!'))
+VALUES (N'DrWho',HASHBYTES(N'SHA2_512',N'Cyberm3n!'))
 
 
 
@@ -38,13 +38,13 @@ DECLARE @InputPassword Nvarchar(50) = N'Cyberm3n!'
 DECLARE @user Nvarchar(50) = N'DrWho'
 
 
-IF EXISTS (SELECT 1 FROM dbo.Login WHERE Password = HASHBYTES('SHA2_512',@InputPassword) AND UserName = @user)
+IF EXISTS (SELECT 1 FROM dbo.Login WHERE Password = HASHBYTES(N'SHA2_512',@InputPassword) AND UserName = @user)
 	BEGIN 
-		PRINT('Correct password')
+		PRINT(N'Correct password')
 	END
 ELSE
 	BEGIN 
-		PRINT('Incorrect password')
+		PRINT(N'Incorrect password')
 	END
 
 
@@ -61,13 +61,13 @@ DECLARE @user Nvarchar(50) = N'Edek'
 
 
 
-IF EXISTS (SELECT 1 FROM dbo.Login WHERE Password = HASHBYTES('SHA2_512',CONCAT(@InputPassword,@user)) AND UserName = @user)
+IF EXISTS (SELECT 1 FROM dbo.Login WHERE Password = HASHBYTES(N'SHA2_512',CONCAT(@InputPassword,@user)) AND UserName = @user)
 	BEGIN 
-		PRINT('Correct password')
+		PRINT(N'Correct password')
 	END
 ELSE
 	BEGIN 
-		PRINT('Incorrect password')
+		PRINT(N'Incorrect password')
 	END
 
 --	SELECT * FROM dbo.Login
@@ -87,10 +87,10 @@ from sys.symmetric_keys --check created key
 
 
 CREATE MASTER KEY
-ENCRYPTION BY PASSWORD = '+dwDmifeIWDni12#@';
+ENCRYPTION BY PASSWORD = N'+dwDmifeIWDni12#@';
 GO
 OPEN MASTER KEY
-DECRYPTION BY PASSWORD = '+dwDmifeIWDni12#@';
+DECRYPTION BY PASSWORD = N'+dwDmifeIWDni12#@';
 
 
 -- Remove DMK
@@ -107,13 +107,13 @@ from sys.databases --show which database is encrypted by DMK
 
 
 BACKUP MASTER KEY
-TO FILE = 'F:\Lab_MasterKey'
-	ENCRYPTION  BY PASSWORD = '12DAsffhd*&dsa';
+TO FILE = N'F:\Lab_MasterKey'
+	ENCRYPTION  BY PASSWORD = N'12DAsffhd*&dsa';
 GO
 
 BACKUP SERVICE MASTER KEY
-TO FILE = 'F:\Lab_SMK'
-	ENCRYPTION BY PASSWORD = '1235423FSD23^$#';
+TO FILE = N'F:\Lab_SMK'
+	ENCRYPTION BY PASSWORD = N'1235423FSD23^$#';
 GO
 
 
@@ -121,16 +121,16 @@ GO
 --CREATE ASSYMETRIC KEY RSA
 CREATE ASYMMETRIC KEY LabASK
 WITH ALGORITHM = RSA_2048
-ENCRYPTION BY PASSWORD = '123tsdf325dfw34'
+ENCRYPTION BY PASSWORD = N'123tsdf325dfw34'
 -- RSA_4096, RSA_3072, RSA_2048
 
 
 -- CREATE CERTIFICATE (x.509)
 
 CREATE CERTIFICATE LabCERT
-ENCRYPTION BY PASSWORD = 'dsa123t132sdf325dfw34'
-WITH SUBJECT = 'LAB Certyfikate',
-EXPIRY_DATE = '20251231' 
+ENCRYPTION BY PASSWORD = N'dsa123t132sdf325dfw34'
+WITH SUBJECT = N'LAB Certyfikate',
+EXPIRY_DATE = N'20251231' 
 
 
 CREATE SYMMETRIC KEY LabSMK
@@ -162,14 +162,14 @@ ENCRYPTION BY ASYMMETRIC KEY LabASK
 
 OPEN SYMMETRIC KEY LabSMK1
 DECRYPTION BY ASYMMETRIC KEY  LabASK
-WITH PASSWORD = '123tsdf325dfw34'
+WITH PASSWORD = N'123tsdf325dfw34'
 
 
 --CREATE NEW ASYMMETRIC KEY
 
 CREATE ASYMMETRIC KEY NEW_KeyASK
 WITH ALGORITHM = RSA_4096 
-ENCRYPTION BY PASSWORD = '132fdsd2d34'
+ENCRYPTION BY PASSWORD = N'132fdsd2d34'
 
 
 
@@ -185,7 +185,7 @@ CLOSE SYMMETRIC KEY LabSMK1
 
 OPEN SYMMETRIC KEY LabSMK1
 DECRYPTION BY ASYMMETRIC KEY  NEW_KeyASK
-WITH PASSWORD = '132fdsd2d34'
+WITH PASSWORD = N'132fdsd2d34'
 
 
 
@@ -214,8 +214,8 @@ ENCRYPTION BY ASYMMETRIC KEY  CreditCardAEK
 OPEN SYMMETRIC KEY CreditCardSK
 DECRYPTION BY ASYMMETRIC KEY  CreditCardAEK
 
-INSERT INTO dbo.Customer (CreditCard)  VALUES(ENCRYPTBYKEY(KEY_GUID('CreditCardSK'),
-											  N'1234-123421',1,'SALT_Example'))
+INSERT INTO dbo.Customer (CreditCard)  VALUES(ENCRYPTBYKEY(KEY_GUID(N'CreditCardSK'),
+											  N'1234-123421',1,N'SALT_Example'))
 
 
 CLOSE SYMMETRIC KEY CreditCardSK
@@ -226,7 +226,7 @@ DECRYPTION BY ASYMMETRIC KEY  CreditCardAEK
 
 SELECT ContactID, 
 	 CAST(DECRYPTBYKEY (
-	 CreditCard,1,'SALT_Example')  AS nvarchar(50)) Decrypt,
+	 CreditCard,1,N'SALT_Example')  AS nvarchar(50)) Decrypt,
 	 CAST(
 	 CreditCard  AS nvarchar(50)) Encrypt
 FROM dbo.Customer
@@ -235,13 +235,83 @@ CLOSE SYMMETRIC KEY CreditCardSK
 
 SELECT ContactID, 
 	 CAST(DECRYPTBYKEY (
-	 CreditCard,1,'SALT_Example')  AS nvarchar(50)) Null_Value,
+	 CreditCard,1,N'SALT_Example')  AS nvarchar(50)) Null_Value,
 	 CAST(
 	 CreditCard  AS nvarchar(50)) Encrypt
 FROM dbo.Customer
 
 
 --ENCRYPT DATA AT REST
+
+USE master
+GO
+
+SELECT * FROM 
+sys.symmetric_keys sk WHERE sk.name= N'##MS_DatabaseMasterKey##'
+
+
+OPEN MASTER KEY
+DECRYPTION BY PASSWORD = N'+dwDmifeIWDni12#@';
+
+CREATE CERTIFICATE MasterCERT
+WITH SUBJECT = N'Master TDE Certyfikate',
+EXPIRY_DATE = N'20331231' 
+
+GO 
+
+BACKUP CERTIFICATE MasterCERT
+TO FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.pub'
+WITH PRIVATE KEY (
+	FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.priv',
+	ENCRYPTION BY PASSWORD = 'dsa123t132sdf325dfw34'
+
+	);
+
+
+USE Lab
+GO
+
+CREATE DATABASE ENCRYPTION KEY
+WITH ALGORITHM = AES_256
+ENCRYPTION BY SERVER CERTIFICATE MasterCERT
+
+SELECT * FROM sys.dm_database_encryption_keys
+
+ALTER DATABASE Lab
+SET ENCRYPTION ON;
+
+
+
+SELECT DB_NAME(database_id),*
+FROM sys.dm_database_encryption_keys
+
+
+--BACKUP CERTIFICATE
+
+
+CREATE CERTIFICATE MasterCERT
+FROM FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.pub'
+WITH PRIVATE KEY (
+	FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.priv',
+	DECRYPTION BY PASSWORD = 'dsa123t132sdf325dfw34'
+
+	);
+
+
+
+-- Always Encrypted
+-- Provision encryption keys
+-- create table with an encrypted column
+
+
+
+
+
+
+	
+
+
+
 
 
 
