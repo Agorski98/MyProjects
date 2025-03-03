@@ -260,9 +260,9 @@ EXPIRY_DATE = N'20331231'
 GO 
 
 BACKUP CERTIFICATE MasterCERT
-TO FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.pub'
+TO FILE = 'F:\MasertCERT.pub'
 WITH PRIVATE KEY (
-	FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.priv',
+	FILE = 'F:\MasertCERT.priv',
 	ENCRYPTION BY PASSWORD = 'dsa123t132sdf325dfw34'
 
 	);
@@ -290,9 +290,9 @@ FROM sys.dm_database_encryption_keys
 
 
 CREATE CERTIFICATE MasterCERT
-FROM FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.pub'
+FROM FILE = 'F:\MasertCERT.pub'
 WITH PRIVATE KEY (
-	FILE = 'B:\1_Praca\Git\MyProjects\SQL_Security\MasertCERT.priv',
+	FILE = 'F:\MasertCERT.priv',
 	DECRYPTION BY PASSWORD = 'dsa123t132sdf325dfw34'
 
 	);
@@ -300,8 +300,51 @@ WITH PRIVATE KEY (
 
 
 -- Always Encrypted
--- Provision encryption keys
--- create table with an encrypted column
+-- Provisioning encryption keys
+-- creating table with an encrypted column
+
+USE Lab
+GO
+
+CREATE COLUMN MASTER KEY [DataEncryptedColumn]
+WITH
+(
+	KEY_STORE_PROVIDER_NAME = N'MSSQL_CERTIFICATE_STORE',
+	KEY_PATH = N'CurrentUser/My/689240B4C0CD9DCA534BCDDB7823007089700152'
+)
+
+GO
+
+
+SELECT * FROM dbo.Unique_Records_Destination --configuration using Wizard
+
+
+SELECT * FROM sys.column_master_keys
+
+SELECT * FROM sys.column_encryption_keys
+
+
+SELECT * FROM sys.column_encryption_key_values
+
+Drop table If Exists dbo.Customer
+
+Create Table dbo.Customer (
+ContactId INT PRIMARY KEY,
+CreditCard Varchar(4000)
+
+ENCRYPTED WITH (COLUMN_ENCRYPTION_KEY=ColumnEncryptionKeyData,
+ENCRYPTION_TYPE = RANDOMIZED,
+ALGORITHM = 'AEAD_AES_256_CBC_HMAC_SHA_256')
+);
+
+
+SELECT * FROM dbo.Customer
+DECLARE @creditCard VARCHAR(50) ='W2343'
+
+INSERT INTO dbo.Customer VALUES (1,@creditCard) 
+
+
+
 
 
 
