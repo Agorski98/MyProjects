@@ -1,6 +1,6 @@
 USE ReportDatabaseProd;
 GO
-CREATE PROCEDURE dbo.proc0001_BasicSellData
+CREATE PROCEDURE dbo.proc0001_XXXX
 AS
 BEGIN TRY
 SET NOCOUNT ON;
@@ -23,8 +23,8 @@ SET @userStartingProcedure = SYSTEM_USER
 
 
 CREATE TABLE dbo.tabProcedureMonitoring 
-( 
-	procedureId INTEGER UNIQUE NOT NULL,
+(	monitoringId INTEGER PRIMARY KEY IDENTITY(1,1),
+	procedureId INTEGER NOT NULL,
 	procedureName NVARCHAR(255) NOT NULL,
 	userStartingProcedure NVARCHAR(255) NOT NUll,
 	procedureStartTime DATETIME NOT NULL,
@@ -47,6 +47,20 @@ CREATE TABLE dbo.tabAllProcedureList
 
 
 CREATE TABLE dbo.tabProcedureExecuteDay
+(
+    scheduleId INTEGER PRIMARY KEY IDENTITY (1,1),
+	procedureId INTEGER NOT NULL,
+	periodId INTEGER NOT NULL,
+	dayOfWeekId INTEGER NOT NULL
+)
+
+
+CREATE TABLE dbo.tabProcedureExecuteDay_dict
+(
+	periodId INTEGER NOT NULL UNIQUE,
+	name NVARCHAR(50)
+)
+
 
 
 
