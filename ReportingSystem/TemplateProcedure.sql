@@ -15,7 +15,7 @@ SET @procedureStartTime = GETDATE();
 SET @autorProcedure = 'rp098';
 SET @userStartingProcedure = SYSTEM_USER
 
-
+INSERT INTO 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --************************************************************** START BODY PROCEDURE **************************************************************************************--
@@ -30,7 +30,11 @@ CREATE TABLE dbo.tabProcedureMonitoring
 	procedureStartTime DATETIME NOT NULL,
 	procedureEndTime DATETIME NULL,
 	errorLine INTEGER NULL,
-	errorDescription NVARCHAR(4000)
+	errorDescription NVARCHAR(4000),
+	Constraint FK_ProcedureIdMonitoring foreign key (procedureId)
+	REFERENCES dbo.tabAllProcedureList(procedureId)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 )
 
 
@@ -42,7 +46,7 @@ CREATE TABLE dbo.tabAllProcedureList
 	procedureName NVARCHAR(255) UNIQUE NOT NULL,
 	autorProcedure NVARCHAR(255) NOT NULL,
 	comment NVARCHAR(255) NULL,
-	priority INTEGER UNIQUE IDENTITY(1,1)
+	priority INTEGER UNIQUE,
 )
 
 
@@ -52,13 +56,28 @@ CREATE TABLE dbo.tabProcedureExecuteDay
 	procedureId INTEGER NOT NULL,
 	periodId INTEGER NOT NULL,
 	dayOfWeekId INTEGER NOT NULL
+	Foreign key (procedureId)
+	REFERENCES dbo.tabAllProcedureList(procedureId),
+	Constraint FK_PeriodId foreign key (periodId)
+	REFERENCES dbo.tabProcedureExecuteDay_dict(periodId)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
 )
+
+
+ALTER TABLE dbo.tabProcedureExecuteDay 
+ADD CONSTRAINT FK_ProcedureIdExecuteDay FOREIGN KEY (procedureId)
+REFERENCES dbo.tabAllProcedureList(procedureId) 
+ON DELETE CASCADE
+ON UPDATE CASCADE
+
 
 
 CREATE TABLE dbo.tabProcedureExecuteDay_dict
 (
-	periodId INTEGER NOT NULL UNIQUE,
+	periodId INTEGER PRIMARY KEY IDENTITY(1,1),
 	name NVARCHAR(50)
+
 )
 
 
