@@ -4,89 +4,54 @@ CREATE PROCEDURE dbo.proc0001_XXXX
 AS
 BEGIN TRY
 SET NOCOUNT ON;
+
 DECLARE @procedureStartTime DATETIME,
 		@procedureEndTime DATETIME,
 		@userStartingProcedure NVARCHAR(255),
 		@procedureId INTEGER,
 		@procedureName NVARCHAR(255),
-		@autorProcedure NVARCHAR(255)
+		@autorProcedure NVARCHAR(255),
+		@monitoringId INTEGER
 
 SET @procedureStartTime = GETDATE();
 SET @autorProcedure = 'rp098';
-SET @userStartingProcedure = SYSTEM_USER
+SET @userStartingProcedure = SYSTEM_USER;
+SET @procedureName = OBJECT_NAME(@@PROCID);
+SET @procedureId = (SELECT procedureId FROM dbo.tabAllProcedureList WHERE @procedureName = procedureName )
 
-INSERT INTO 
+INSERT INTO dbo.tabProcedureMonitoring (procedureId,procedureName,userStartingProcedure,procedureStartTime) 
+OUTPUT.monitoringId INTO @monitoringId
+VALUES (@procedureId,@procedureName,@userStartingProcedure,GETDATE())
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 --************************************************************** START BODY PROCEDURE **************************************************************************************--
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-CREATE TABLE dbo.tabProcedureMonitoring 
-(	monitoringId INTEGER PRIMARY KEY IDENTITY(1,1),
-	procedureId INTEGER NOT NULL,
-	procedureName NVARCHAR(255) NOT NULL,
-	userStartingProcedure NVARCHAR(255) NOT NUll,
-	procedureStartTime DATETIME NOT NULL,
-	procedureEndTime DATETIME NULL,
-	errorLine INTEGER NULL,
-	errorDescription NVARCHAR(4000),
-	Constraint FK_ProcedureIdMonitoring foreign key (procedureId)
-	REFERENCES dbo.tabAllProcedureList(procedureId)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE
-)
 
 
 
-
-CREATE TABLE dbo.tabAllProcedureList
-(
-	procedureId INTEGER PRIMARY KEY IDENTITY(1,1) ,
-	procedureName NVARCHAR(255) UNIQUE NOT NULL,
-	autorProcedure NVARCHAR(255) NOT NULL,
-	comment NVARCHAR(255) NULL,
-	priority INTEGER UNIQUE,
-)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--**************************************************************  END BODY PROCEDURE  **************************************************************************************--
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-CREATE TABLE dbo.tabProcedureExecuteDay
-(
-    scheduleId INTEGER PRIMARY KEY IDENTITY (1,1),
-	procedureId INTEGER NOT NULL,
-	periodId INTEGER NOT NULL,
-	dayOfWeekId INTEGER NOT NULL
-	Foreign key (procedureId)
-	REFERENCES dbo.tabAllProcedureList(procedureId),
-	Constraint FK_PeriodId foreign key (periodId)
-	REFERENCES dbo.tabProcedureExecuteDay_dict(periodId)
-	ON DELETE CASCADE
-	ON UPDATE CASCADE
-)
-
-
-ALTER TABLE dbo.tabProcedureExecuteDay 
-ADD CONSTRAINT FK_ProcedureIdExecuteDay FOREIGN KEY (procedureId)
-REFERENCES dbo.tabAllProcedureList(procedureId) 
-ON DELETE CASCADE
-ON UPDATE CASCADE
-
-
-
-CREATE TABLE dbo.tabProcedureExecuteDay_dict
-(
-	periodId INTEGER PRIMARY KEY IDENTITY(1,1),
-	name NVARCHAR(50)
-
-)
-
-
-
+	UPDATE monit
+	SET monit.procedureEndTime = GETDATE()
+	FROM dbo.tabProcedureMonitoring monit
+	WHERE monit.monitoringId = @monitoringId
 
 
 END TRY
 BEGIN CATCH
 
+	UPDATE monit
+	SET monit.errorLine= ERROR_LINE(),
+		monit.errorDescription = ERROR_MESSAGE()
+	FROM dbo.tabProcedureMonitoring monit
+	WHERE monit.monitoringId = @monitoringId
+
 END CATCH
 
+	
 
