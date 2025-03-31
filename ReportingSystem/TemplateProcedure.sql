@@ -16,7 +16,7 @@ DECLARE @procedureStartTime DATETIME,
 SET @procedureStartTime = GETDATE();
 SET @autorProcedure = 'rp098';
 SET @userStartingProcedure = SYSTEM_USER;
-SET @procedureName = OBJECT_NAME(@@PROCID);
+SET @procedureName =  OBJECT_SCHEMA_NAME(@@PROCID) + '.' + OBJECT_NAME(@@PROCID);
 SET @procedureId = (SELECT procedureId FROM dbo.tabAllProcedureList WHERE @procedureName = procedureName )
 
 INSERT INTO dbo.tabProcedureMonitoring (procedureId,procedureName,userStartingProcedure,procedureStartTime) 
