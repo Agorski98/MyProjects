@@ -125,6 +125,7 @@
             this.listBoxDayOfWeekTabAdd.Size = new System.Drawing.Size(123, 69);
             this.listBoxDayOfWeekTabAdd.Sorted = true;
             this.listBoxDayOfWeekTabAdd.TabIndex = 11;
+            this.listBoxDayOfWeekTabAdd.SelectedIndexChanged += new System.EventHandler(this.listBoxDayOfWeekTabAdd_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -194,6 +195,7 @@
             this.textBoxProcedureNameTabAdd.Name = "textBoxProcedureNameTabAdd";
             this.textBoxProcedureNameTabAdd.Size = new System.Drawing.Size(123, 23);
             this.textBoxProcedureNameTabAdd.TabIndex = 1;
+            this.textBoxProcedureNameTabAdd.TextChanged += new System.EventHandler(this.textBoxProcedureNameTabAdd_TextChanged);
             // 
             // TabAllProcedure
             // 
